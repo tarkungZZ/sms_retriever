@@ -1,9 +1,24 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:telephony/telephony.dart';
+import 'package:http/http.dart' as http;
 
-onBackgroundMessage(SmsMessage message) {
+onBackgroundMessage(SmsMessage message) async {
   debugPrint("onBackgroundMessage called");
+
+  debugPrint(message.body);
+
+  try {
+    await http.post(Uri.parse('http://192.168.1.20:9999/transaction/sms'),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        encoding: Encoding.getByName('utf-8'),
+        body: message.body);
+  } catch (e) {
+    print(e);
+  }
 }
 
 void main() {
@@ -29,6 +44,48 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       _message = message.body ?? "Error reading message body.";
     });
+
+    debugPrint(message.body);
+
+    try {
+      await http.post(Uri.parse('http://192.168.1.20:9999/transaction/sms'),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          encoding: Encoding.getByName('utf-8'),
+          body: message.body);
+    } catch (e) {
+      print(e);
+    }
+
+    // final response = await http.post(
+    //   Uri.parse('http://10.0.0.2:9999/transaction/sms'),
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //   },
+    //   encoding: Encoding.getByName('utf-8'),
+    //   body: {message.body},
+    // );
+
+    // if (response.statusCode == 200) {
+    //   debugPrint('send sms successful.');
+    // } else {
+    //   debugPrint('send sms failed.');
+    // }
+
+    // var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+    // var request =
+    //     http.Request('POST', Uri.parse('localhost:9999/transaction/sms'));
+    // request.bodyFields = message;
+    // request.headers.addAll(headers);
+
+    // http.StreamedResponse response = await request.send();
+
+    // if (response.statusCode == 200) {
+    //   print(await response.stream.bytesToString());
+    // } else {
+    //   print(response.reasonPhrase);
+    // }
   }
 
   onSendStatus(SendStatus status) {
@@ -59,17 +116,12 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('Plugin example app'),
+        title: const Text('SMS Retriever.'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(child: Text("Latest received SMS: $_message")),
-          TextButton(
-              onPressed: () async {
-                await telephony.openDialer("123413453");
-              },
-              child: Text('Open Dialer'))
+          Center(child: Text("Latest received SMS : $_message")),
         ],
       ),
     ));
