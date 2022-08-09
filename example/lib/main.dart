@@ -3,19 +3,30 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:telephony/telephony.dart';
 import 'package:http/http.dart' as http;
+import 'package:device_info_plus/device_info_plus.dart';
 
 onBackgroundMessage(SmsMessage message) async {
   debugPrint("onBackgroundMessage called");
-
   debugPrint(message.body);
 
   try {
-    await http.post(Uri.parse('http://192.168.1.20:9999/transaction/sms'),
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    debugPrint('Running on ${androidInfo.model}');
+
+    Map<String, dynamic> body = {
+      'deviceID': androidInfo.model,
+      'message': message.body
+    };
+    String jsonBody = json.encode(body);
+
+    //await http.post(Uri.parse('http://139.59.126.33:9999/transaction/sms'),
+    await http.post(Uri.parse('http://192.168.0.192:9999/transaction/sms'),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
         encoding: Encoding.getByName('utf-8'),
-        body: message.body);
+        body: jsonBody);
   } catch (e) {
     print(e);
   }
@@ -48,12 +59,23 @@ class _MyAppState extends State<MyApp> {
     debugPrint(message.body);
 
     try {
-      await http.post(Uri.parse('http://192.168.1.20:9999/transaction/sms'),
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      debugPrint('Running on ${androidInfo.model}');
+
+      Map<String, dynamic> body = {
+        'deviceID': androidInfo.model,
+        'message': message.body
+      };
+      String jsonBody = json.encode(body);
+
+      //await http.post(Uri.parse('http://139.59.126.33:9999/transaction/sms'),
+      await http.post(Uri.parse('http://192.168.0.192:9999/transaction/sms'),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
           encoding: Encoding.getByName('utf-8'),
-          body: message.body);
+          body: jsonBody);
     } catch (e) {
       print(e);
     }
