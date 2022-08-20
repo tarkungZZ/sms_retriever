@@ -16,12 +16,14 @@ onBackgroundMessage(SmsMessage message) async {
 
     Map<String, dynamic> body = {
       'deviceID': androidInfo.model,
-      'message': message.body
+      'address': message.address,
+      'message': message.body,
+      'date': message.date,
     };
     String jsonBody = json.encode(body);
 
     //await http.post(Uri.parse('http://139.59.126.33:9999/transaction/sms'),
-    await http.post(Uri.parse('http://192.168.0.192:9999/transaction/sms'),
+    await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -64,13 +66,16 @@ class _MyAppState extends State<MyApp> {
       debugPrint('Running on ${androidInfo.model}');
 
       Map<String, dynamic> body = {
+        'bid': '3',
         'deviceID': androidInfo.model,
-        'message': message.body
+        'address': message.address,
+        'message': message.body,
+        'date': message.date,
       };
       String jsonBody = json.encode(body);
 
       //await http.post(Uri.parse('http://139.59.126.33:9999/transaction/sms'),
-      await http.post(Uri.parse('http://192.168.0.192:9999/transaction/sms'),
+      await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
@@ -138,7 +143,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('SMS Retriever.'),
+        title: const Text('SMS Retriever 03'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
