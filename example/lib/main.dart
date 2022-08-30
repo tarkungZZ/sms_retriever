@@ -15,6 +15,7 @@ onBackgroundMessage(SmsMessage message) async {
     debugPrint('Running on ${androidInfo.model}');
 
     Map<String, dynamic> body = {
+      'bid': '1',
       'deviceID': androidInfo.model,
       'address': message.address,
       'message': message.body,
@@ -22,8 +23,8 @@ onBackgroundMessage(SmsMessage message) async {
     };
     String jsonBody = json.encode(body);
 
-    //await http.post(Uri.parse('http://139.59.126.33:9999/transaction/sms'),
-    await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
+    await http.post(Uri.parse('http://192.168.68.183:9999/transaction/sms'),
+        //await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -66,7 +67,7 @@ class _MyAppState extends State<MyApp> {
       debugPrint('Running on ${androidInfo.model}');
 
       Map<String, dynamic> body = {
-        'bid': '3',
+        'bid': '1',
         'deviceID': androidInfo.model,
         'address': message.address,
         'message': message.body,
@@ -74,8 +75,8 @@ class _MyAppState extends State<MyApp> {
       };
       String jsonBody = json.encode(body);
 
-      //await http.post(Uri.parse('http://139.59.126.33:9999/transaction/sms'),
-      await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
+      await http.post(Uri.parse('http://192.168.68.183:9999/transaction/sms'),
+          //await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
@@ -84,35 +85,6 @@ class _MyAppState extends State<MyApp> {
     } catch (e) {
       print(e);
     }
-
-    // final response = await http.post(
-    //   Uri.parse('http://10.0.0.2:9999/transaction/sms'),
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-    //   encoding: Encoding.getByName('utf-8'),
-    //   body: {message.body},
-    // );
-
-    // if (response.statusCode == 200) {
-    //   debugPrint('send sms successful.');
-    // } else {
-    //   debugPrint('send sms failed.');
-    // }
-
-    // var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
-    // var request =
-    //     http.Request('POST', Uri.parse('localhost:9999/transaction/sms'));
-    // request.bodyFields = message;
-    // request.headers.addAll(headers);
-
-    // http.StreamedResponse response = await request.send();
-
-    // if (response.statusCode == 200) {
-    //   print(await response.stream.bytesToString());
-    // } else {
-    //   print(response.reasonPhrase);
-    // }
   }
 
   onSendStatus(SendStatus status) {
@@ -143,7 +115,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('SMS Retriever 03'),
+        title: const Text('SMS Retriever Onsite kbank Test'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
