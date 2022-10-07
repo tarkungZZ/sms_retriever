@@ -15,7 +15,7 @@ onBackgroundMessage(SmsMessage message) async {
     debugPrint('Running on ${androidInfo.model}');
 
     Map<String, dynamic> body = {
-      'bid': '1',
+      'bid': '2',
       'deviceID': androidInfo.model,
       'address': message.address,
       'message': message.body,
@@ -23,13 +23,21 @@ onBackgroundMessage(SmsMessage message) async {
     };
     String jsonBody = json.encode(body);
 
-    await http.post(Uri.parse('http://192.168.68.183:9999/transaction/sms'),
-        //await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        encoding: Encoding.getByName('utf-8'),
-        body: jsonBody);
+    var array = [
+      'http://192.168.0.99:9999/sms/sms',
+      'http://192.168.0.100:9999/sms/sms',
+      'http://192.168.68.183:9999/sms/sms',
+      'http://192.168.200.176:9999/sms/sms'
+    ];
+
+    for (var i = 0; i < array.length; i++) {
+      await http.post(Uri.parse(array[i]),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          encoding: Encoding.getByName('utf-8'),
+          body: jsonBody);
+    }
   } catch (e) {
     print(e);
   }
@@ -67,7 +75,7 @@ class _MyAppState extends State<MyApp> {
       debugPrint('Running on ${androidInfo.model}');
 
       Map<String, dynamic> body = {
-        'bid': '1',
+        'bid': '2',
         'deviceID': androidInfo.model,
         'address': message.address,
         'message': message.body,
@@ -75,13 +83,21 @@ class _MyAppState extends State<MyApp> {
       };
       String jsonBody = json.encode(body);
 
-      await http.post(Uri.parse('http://192.168.68.183:9999/transaction/sms'),
-          //await http.post(Uri.parse('http://192.168.0.99:9999/transaction/sms'),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          encoding: Encoding.getByName('utf-8'),
-          body: jsonBody);
+      var array = [
+        'http://192.168.0.99:9999/sms/sms',
+        'http://192.168.0.100:9999/sms/sms',
+        'http://192.168.68.183:9999/sms/sms',
+        'http://192.168.200.176:9999/sms/sms'
+      ];
+
+      for (var i = 0; i < array.length; i++) {
+        await http.post(Uri.parse(array[i]),
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            encoding: Encoding.getByName('utf-8'),
+            body: jsonBody);
+      }
     } catch (e) {
       print(e);
     }
@@ -115,7 +131,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('SMS Retriever Onsite kbank Test'),
+        title: const Text('SBO 02'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
