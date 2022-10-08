@@ -15,7 +15,8 @@ onBackgroundMessage(SmsMessage message) async {
     debugPrint('Running on ${androidInfo.model}');
 
     Map<String, dynamic> body = {
-      'bid': '3',
+      'bid': '1',
+      'web': 'ufa',
       'deviceID': androidInfo.model,
       'address': message.address,
       'message': message.body,
@@ -70,7 +71,8 @@ class _MyAppState extends State<MyApp> {
       debugPrint('Running on ${androidInfo.model}');
 
       Map<String, dynamic> body = {
-        'bid': '3',
+        'bid': '1',
+        'web': 'ufa',
         'deviceID': androidInfo.model,
         'address': message.address,
         'message': message.body,
@@ -121,7 +123,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('SBO 03'),
+        title: const Text('UFA 01'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
