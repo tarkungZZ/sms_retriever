@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('Netbank OTP'),
+        title: const Text('SBO NEW SMS'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
