@@ -23,9 +23,9 @@ onBackgroundMessage(SmsMessage message) async {
     };
     String jsonBody = json.encode(body);
 
-    await http.post(Uri.parse('http://188.166.231.150:3002/sms/add'),
+    await http.post(Uri.parse('http://188.166.231.150:4000/sms/sms'),
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
         encoding: Encoding.getByName('utf-8'),
         body: jsonBody);
@@ -74,9 +74,9 @@ class _MyAppState extends State<MyApp> {
       };
       String jsonBody = json.encode(body);
 
-      await http.post(Uri.parse('http://188.166.231.150:3002/sms/add'),
+      await http.post(Uri.parse('http://188.166.231.150:4000/sms/sms'),
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
+            "Content-Type": "application/json",
           },
           encoding: Encoding.getByName('utf-8'),
           body: jsonBody);
@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
-        title: const Text('SBO NEW SMS'),
+        title: const Text('SBO SMS 2024'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
